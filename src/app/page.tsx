@@ -4,8 +4,20 @@ import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { getWeather } from "@/lib/weather-service";
 
+interface Weather {
+  location: {
+    name: string;
+  };
+  current: {
+    temp_c: number;
+    condition: {
+      text: string;
+    };
+  };
+}
+
 export default function Home() {
-  const [weather, setWeather] = useState(null);
+  const [weather, setWeather] = useState<Weather | null>(null);
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -24,7 +36,7 @@ export default function Home() {
       </div>
 
       <div>
-        <h1>Clima em {weather?.location?.name}</h1>
+        <h1>Clima em {weather?.location?.name || "Não encontrado"}</h1>
         <p>{weather?.current?.temp_c}°C</p>
         <p>{weather?.current?.condition?.text}</p>
       </div>
