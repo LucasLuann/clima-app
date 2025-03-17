@@ -3,22 +3,11 @@
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { getWeather } from "@/lib/weather-service";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
-
-interface Weather {
-  location: {
-    name: string;
-  };
-  current: {
-    temp_c: number;
-    condition: {
-      text: string;
-    };
-  };
-}
+import WeatherCard from "@/components/weather-card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Weather } from "@/types/weather";
 
 export default function Home() {
   const [weather, setWeather] = useState<Weather | null>(null);
@@ -77,28 +66,14 @@ export default function Home() {
 
       {error && (
         <Card className="my-4 bg-destructive/10 text-destructive">
-          <CardContent>
-            <p>{error}</p>
+          <CardContent >
+            <p className="text-center">{error}</p>
           </CardContent>
         </Card>
       )}
 
       {weather && (
-        <Card>
-          <CardHeader>
-            <CardTitle>{weather.location.name}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Image
-              src={`https:${weather.current.condition.icon}`}
-              alt={weather.current.condition.text}
-              width={100}
-              height={100}
-            />
-            <p>{weather.current.condition.text}</p>
-            <p>{weather.current.temp_c}°C</p>
-          </CardContent>
-        </Card>
+        <WeatherCard weather={weather} />
       )}
     </main>
   );
