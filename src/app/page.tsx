@@ -2,15 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { getWeather } from "@/lib/weather-service";
+import { getWeather, getForecast } from "@/lib/weather-service";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import WeatherCard from "@/components/weather-card";
 import { Card, CardContent } from "@/components/ui/card";
 import { Weather } from "@/types/weather";
+import { Forecast } from "@/types/forecast";
+import ForecastCard from "@/components/forecast-card";
 
 export default function Home() {
   const [weather, setWeather] = useState<Weather | null>(null);
+  const [forecast, setForecast] = useState<Forecast | null>(null);
   const [searchInput, setSearchInput] = useState("");
   const [location, setLocation] = useState("Cuiaba");
   const [loading, setLoading] = useState(false);
@@ -33,8 +36,18 @@ export default function Home() {
     }
   };
 
+  const fetchForecast = async (query: string) => {
+    try {
+      const data = await getForecast(query);
+      setForecast(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     fetchWeather(location);
+    fetchForecast(location);
   }, [location]);
 
   const handleSearch = (e: React.FormEvent) => {
@@ -59,21 +72,28 @@ export default function Home() {
           onChange={(e) => setSearchInput(e.target.value)}
         />
 
-        <Button type="submit" disabled={loading} className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white">
+        <Button
+          type="submit"
+          disabled={loading}
+          className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white"
+        >
           {loading ? "Buscando..." : "Buscar"}
         </Button>
       </form>
 
       {error && (
         <Card className="my-4 bg-destructive/10 text-destructive">
-          <CardContent >
+          <CardContent>
             <p className="text-center">{error}</p>
           </CardContent>
         </Card>
       )}
 
       {weather && (
-        <WeatherCard weather={weather} />
+        <div>
+          <WeatherCard weather={weather} />
+          <ForecastCard forecast={forecast} />
+        </div>
       )}
     </main>
   );
