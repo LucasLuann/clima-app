@@ -13,7 +13,7 @@ import { Forecast } from "@/types/forecast";
 
 export default function Home() {
   const [weather, setWeather] = useState<Weather | null>(null);
-  const [forecast, setForecast] = useState<Forecast | null>(null);
+  const [forecast, setForecast] = useState<Forecast>({} as Forecast);
   const [searchInput, setSearchInput] = useState("");
   const [location, setLocation] = useState("Cuiaba");
   const [loading, setLoading] = useState(false);
