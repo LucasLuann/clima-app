@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Weather } from "@/types/weather";
 import ForecastCard from "@/components/forecast-card";
 import { Forecast } from "@/types/forecast";
+import ChartLine from "@/components/chart-line";
 
 export default function Home() {
   const [weather, setWeather] = useState<Weather | null>(null);
@@ -93,6 +94,7 @@ export default function Home() {
         <div>
           <WeatherCard weather={weather} />
           <ForecastCard forecast={forecast} />
+          <ChartLine />
         </div>
       )}
     </main>
