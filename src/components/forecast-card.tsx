@@ -1,7 +1,7 @@
 import React from "react";
 import { Forecast } from "@/types/forecast";
 import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Thermometer, Droplets, Wind } from "lucide-react";
 
 const ForecastCard = ({ forecast }: { forecast: Forecast }) => {
@@ -33,7 +33,7 @@ const ForecastCard = ({ forecast }: { forecast: Forecast }) => {
                   <p className="text-sm font-medium text-slate-600 dark:text-slate-300">
                     {forecast.location.region}, {forecast.location.country}
                   </p>
-                  <p className="text-xs mt-1 text-slate-500 dark:text-slate-400">
+                  <p className="text-xs mt-1 text-slate-400 dark:text-slate-400">
                     {formatLocalTime(item.date)}
                   </p>
                 </div>
