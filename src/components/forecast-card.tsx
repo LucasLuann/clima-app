@@ -5,13 +5,26 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Thermometer } from "lucide-react";
 
 const ForecastCard = ({ forecast }: { forecast: Forecast }) => {
+
+  const formatLocalTime = (timeString: string) => {
+    const date = new Date(timeString);
+
+    return new Intl.DateTimeFormat("pt-BR", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      
+    }).format(date);
+  };
+
   return (
     <div className="flex gap-2 flex-wrap justify-between my-2 w-full">
       {forecast?.forecast?.forecastday?.map((item: any) => (
         <Card key={item.date} className="shadow-lg rounded-xl p-4 flex flex-1">
           <CardHeader className="text-center ">
-            <CardTitle className="text-lg font-semibold tracking-wide">
-              {new Date(item.date).toLocaleString("pt-BR")}
+            <CardTitle className="text-sm font-semibold tracking-wide">
+              {formatLocalTime(item.date)}
             </CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col items-center gap-3">
