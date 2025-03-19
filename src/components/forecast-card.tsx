@@ -66,7 +66,7 @@ const ForecastCard = ({ forecast }: { forecast: Forecast }) => {
                       <p className="text-xs text-slate-500 dark:text-slate-400">
                         Min
                       </p>
-                      <p className="text-sm md:text-lg  font-bold text-slate-700 dark:text-slate-200">
+                      <p className="text-sm md:text-md  font-bold text-slate-700 dark:text-slate-200">
                         {item.day.mintemp_c}°C
                       </p>
                     </div>
@@ -74,7 +74,7 @@ const ForecastCard = ({ forecast }: { forecast: Forecast }) => {
                       <p className="text-xs text-slate-500 dark:text-slate-400">
                         Max
                       </p>
-                      <p className="text-sm md:text-lg font-bold text-slate-700 dark:text-slate-200">
+                      <p className="text-sm md:text-md  font-bold text-slate-700 dark:text-slate-200">
                         {item.day.maxtemp_c}°C
                       </p>
                     </div>
