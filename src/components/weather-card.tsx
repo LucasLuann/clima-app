@@ -2,31 +2,89 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { Weather } from "@/types/weather";
+import { Droplets, Thermometer, Wind } from "lucide-react";
 
 const WeatherCard = ({ weather }: { weather: Weather }) => {
+  const { location, current } = weather;
+
+  // Formatar data e hora
+  const formatLocalTime = (timeString: string) => {
+    const date = new Date(timeString);
+
+    return new Intl.DateTimeFormat("pt-BR", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(date);
+  };
+
   return (
-    <Card className="w-full p-4 bg-gradient-to-br from-blue-300 to-blue-700 text-white shadow-lg rounded-xl">
-      <CardHeader className="text-center ">
-        <CardTitle className="text-lg font-semibold tracking-wide">
-          Hoje
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="flex flex-col items-center gap-3">
-        <div className="text-center">
-          <p className="text-xl font-bold">{weather.location.name}</p>
-          <p className="text-sm opacity-80">
-            {weather.location.region}, {weather.location.country}
-          </p>
+    <Card>
+      <CardHeader className="bg-secondary text-secondary-foreground p-6 rounded-2xl w-[95%] mx-auto shadow-md">
+        <div className="flex justify-between items-start">
+          <div >
+            <CardTitle className="text-2xl">{location.name}</CardTitle>
+            <p className="text-sm opacity-90">
+              {location.region && `${location.region}, `}
+              {location.country}
+            </p>
+            <p className="text-xs opacity-75 mt-1">
+              {formatLocalTime(location.localtime)}
+            </p>
+          </div>
+          <div className="text-right">
+            <div className="text-4xl font-bold">{current.temp_c}°C</div>
+            <p className="text-sm">Sensação: {current.feelslike_c}°C</p>
+          </div>
         </div>
-        <Image
-          src={`https:${weather.current.condition.icon}`}
-          alt={weather.current.condition.text}
-          width={80}
-          height={80}
-          className="drop-shadow-lg"
-        />
-        <p className="text-lg font-medium">{weather.current.condition.text}</p>
-        <p className="text-4xl font-bold">{weather.current.temp_c}°C</p>
+      </CardHeader>
+      <CardContent className="p-6">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            {current.condition.icon && (
+              <Image
+                src={`https:${current.condition.icon}`}
+                alt={current.condition.text}
+                width={50}
+                height={50}
+              />
+            )}
+            <span className="text-lg font-medium">
+              {current.condition.text}
+            </span>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-10 justify-center">
+          <div className="flex items-center gap-2">
+            <Wind className="h-5 w-5 text-muted-foreground" />
+            <div>
+              <p className="text-sm text-muted-foreground">Vento</p>
+              <p className="font-medium">
+                {current.wind_kph} km/h ({current.wind_dir})
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Droplets className="h-5 w-5 text-muted-foreground" />
+            <div>
+              <p className="text-sm text-muted-foreground">Umidade</p>
+              <p className="font-medium">{current.humidity}%</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Thermometer className="h-5 w-5 text-muted-foreground" />
+            <div>
+              <p className="text-sm text-muted-foreground">Índice UV</p>
+              <p className="font-medium">{current.uv}</p>
+            </div>
+          </div>
+        </div>
       </CardContent>
     </Card>
   );
