@@ -20,7 +20,7 @@ const ForecastCard = ({ forecast }: { forecast: Forecast }) => {
 
   return (
     <div className="flex gap-2 flex-wrap justify-between my-2 w-full">
-      {forecast?.forecast?.forecastday?.map((item: any) => (
+      {forecast?.forecast?.forecastday?.map((item) => (
         <Card key={item.date} className="shadow-lg rounded-xl p-4 flex flex-1">
           <CardHeader className="text-center ">
             <CardTitle className="text-sm font-semibold tracking-wide">
