@@ -12,6 +12,8 @@ import { Weather } from "@/types/weather";
 import ForecastCard from "@/components/forecast-card";
 import { Forecast } from "@/types/forecast";
 import ChartLine from "@/components/chart-line";
+import BarChartWind from "@/components/bar-chart";
+import AvgHumidity from "@/components/avg-humidity-chart";
 // import ChartLine from "@/components/chart-line";
 
 export default function Home() {
@@ -122,9 +124,9 @@ export default function Home() {
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-2">
                 <ChartLine forecast={forecast} />
-                <ChartLine forecast={forecast} />
+                <BarChartWind forecast={forecast} />
                 <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1">
-                  <ChartLine forecast={forecast} />
+                  <AvgHumidity forecast={forecast} />
                 </div>
               </div>
             </motion.div>
