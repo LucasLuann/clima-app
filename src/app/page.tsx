@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Weather } from "@/types/weather";
 import ForecastCard from "@/components/forecast-card";
 import { Forecast } from "@/types/forecast";
+import ChartLine from "@/components/chart-line";
 // import ChartLine from "@/components/chart-line";
 
 export default function Home() {
@@ -92,8 +93,12 @@ export default function Home() {
       {weather && (
         <div>
           <WeatherCard weather={weather} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
+            <ChartLine forecast={forecast} />
+            <ChartLine forecast={forecast} />
+            <ChartLine forecast={forecast} />
+          </div>
           <ForecastCard forecast={forecast} />
-          {/* <ChartLine /> */}
         </div>
       )}
     </main>
