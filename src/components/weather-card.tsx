@@ -31,12 +31,16 @@ const WeatherCard = ({ weather }: { weather: Weather }) => {
               {location.region && `${location.region}, `}
               {location.country}
             </p>
+            
             <p className="text-xs opacity-75 mt-1">
               {formatLocalTime(location.localtime)}
             </p>
           </div>
+
+          
           
           <div className="text-right mt-5 sm:mt-0 md: mt-0">
+            <p className="text-sm font-bold text-center sm:text-left md:text-left">AGORA</p>
             <div className="text-4xl font-bold text-gray-500">{current.temp_c}°C</div>
             <p className="text-sm">Sensação: {current.feelslike_c}°C</p>
           </div>
