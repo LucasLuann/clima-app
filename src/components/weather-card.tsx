@@ -23,9 +23,9 @@ const WeatherCard = ({ weather }: { weather: Weather }) => {
 
   return (
     <Card>
-      <CardHeader className="p-6 rounded-2xl w-[95%] mx-auto shadow-md">
-        <div className="flex justify-between items-start">
-          <div >
+      <CardHeader className="p-6 rounded-2xl w-[95%] mx-auto shadow-md bg-gray-50 dark:bg-slate-800/60 backdrop-blur-sm" >
+        <div className="flex flex-col sm:flex-row md:flex-row justify-between items-center ">
+          <div className="text-center sm:text-left md:text-left">
             <CardTitle className="text-2xl font-bold tracking-wide">{location.name}</CardTitle>
             <p className="text-sm opacity-90">
               {location.region && `${location.region}, `}
@@ -35,12 +35,14 @@ const WeatherCard = ({ weather }: { weather: Weather }) => {
               {formatLocalTime(location.localtime)}
             </p>
           </div>
-          <div className="text-right">
+          
+          <div className="text-right mt-5 sm:mt-0 md: mt-0">
             <div className="text-4xl font-bold text-gray-500">{current.temp_c}°C</div>
             <p className="text-sm">Sensação: {current.feelslike_c}°C</p>
           </div>
         </div>
       </CardHeader>
+
       <CardContent className="p-6">
         <div className="flex items-center justify-center mb-6">
           <div className="flex items-center gap-2">

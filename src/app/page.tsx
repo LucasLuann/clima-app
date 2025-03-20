@@ -10,7 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Weather } from "@/types/weather";
 import ForecastCard from "@/components/forecast-card";
 import { Forecast } from "@/types/forecast";
-import ChartLine from "@/components/chart-line";
+// import ChartLine from "@/components/chart-line";
 
 export default function Home() {
   const [weather, setWeather] = useState<Weather | null>(null);
@@ -66,18 +66,17 @@ export default function Home() {
         <ThemeToggle />
       </div>
 
-      <form onSubmit={handleSearch} className="my-4 flex gap-2">
+      <form
+        onSubmit={handleSearch}
+        className="flex gap-2 w-full md:w-1/2 mx-auto mt-10 mb-4"
+      >
         <Input
           placeholder="Digite o nome da cidade..."
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
 
-        <Button
-          type="submit"
-          disabled={loading}
-          className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white"
-        >
+        <Button type="submit" disabled={loading} className="cursor-pointer">
           {loading ? "Buscando..." : "Buscar"}
         </Button>
       </form>
@@ -94,7 +93,7 @@ export default function Home() {
         <div>
           <WeatherCard weather={weather} />
           <ForecastCard forecast={forecast} />
-          <ChartLine />
+          {/* <ChartLine /> */}
         </div>
       )}
     </main>
