@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌦️ ClimaApp – Previsão do Tempo  
 
-## Getting Started
+Um aplicativo de clima construído com **Next.js** e integrado à [WeatherAPI](https://www.weatherapi.com/), proporcionando informações precisas sobre a previsão do tempo.  
 
-First, run the development server:
+## 🚀 Tecnologias  
+
+- [Next.js](https://nextjs.org/) – Framework React moderno e otimizado.  
+- [TypeScript](https://www.typescriptlang.org/) – Tipagem estática para maior segurança no código.  
+- [Tailwind CSS](https://tailwindcss.com/) – Estilização rápida e responsiva.  
+- [WeatherAPI](https://www.weatherapi.com/) – Fonte de dados meteorológicos.  
+
+## 🔧 Instalação e Uso  
+
+Clone o repositório:  
+
+```bash
+git clone https://github.com/LucasLuann/clima-app.git
+cd clima-app
+```
+
+Instale as dependências:  
+
+```bash
+npm install
+# ou
+yarn install
+# ou
+pnpm install
+```
+
+Crie um arquivo **.env.local** na raiz do projeto e adicione sua chave da WeatherAPI:  
+
+```bash
+NEXT_PUBLIC_WEATHER_API_KEY=SUA_CHAVE_AQUI
+```
+
+Inicie o servidor de desenvolvimento:  
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no navegador para visualizar o app.  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌍 Funcionalidades  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+✅ Buscar clima por cidade  
+✅ Exibir temperatura, umidade, vento e condição atual  
+✅ Atualização em tempo real  
+✅ Interface responsiva e moderna  
 
-## Learn More
+## 📦 Deploy  
 
-To learn more about Next.js, take a look at the following resources:
+Este projeto pode ser facilmente implantado na [Vercel](https://vercel.com/).  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Faça login na Vercel e importe o repositório.  
+2. Configure a variável de ambiente `NEXT_PUBLIC_WEATHER_API_KEY`.  
+3. Clique em **Deploy** e pronto! 🚀  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🤝 Contribuição  
 
-## Deploy on Vercel
+Contribuições são bem-vindas! Para contribuir:  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Faça um fork do repositório.  
+2. Crie uma nova branch:  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   git checkout -b feature/nova-funcionalidade
+   ```
+
+3. Faça suas alterações e commit:  
+
+   ```bash
+   git commit -m "Adiciona nova funcionalidade"
+   ```
+
+4. Envie um pull request.  
+
+---
+
+📌 **Autor**: [Lucas Luann](https://github.com/LucasLuann)  
+🔗 **Live Demo**: [clima-app](https://clima-app-ll.vercel.app/)
