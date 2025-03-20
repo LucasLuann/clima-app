@@ -47,7 +47,7 @@ const ChartLine = ({ forecast }: { forecast: Forecast }) => {
   } satisfies ChartConfig;
 
   return (
-    <Card>
+    <Card className="shadow-md hover:shadow-xl dark:hover:shadow-slate-800">
       <CardHeader>
         <CardTitle>Gráfico de Temperatura</CardTitle>
         <CardDescription>

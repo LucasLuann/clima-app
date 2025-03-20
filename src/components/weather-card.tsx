@@ -22,7 +22,7 @@ const WeatherCard = ({ weather }: { weather: Weather }) => {
   };
 
   return (
-    <Card>
+    <Card className="shadow-md hover:shadow-xl dark:hover:shadow-slate-800">
       <CardHeader className="p-6 rounded-2xl w-[95%] mx-auto shadow-md bg-gray-50 dark:bg-slate-800/60 backdrop-blur-sm" >
         <div className="flex flex-col sm:flex-row md:flex-row justify-between items-center ">
           <div className="text-center sm:text-left md:text-left">
@@ -39,9 +39,9 @@ const WeatherCard = ({ weather }: { weather: Weather }) => {
 
           
           
-          <div className="text-right mt-5 sm:mt-0 md: mt-0">
-            <p className="text-sm font-bold text-center sm:text-left md:text-left">AGORA</p>
-            <div className="text-4xl font-bold text-gray-500">{current.temp_c}°C</div>
+          <div className="text-right mt-5 sm:mt-0 md:mt-0">
+            <p className="text-sm font-bold text-center sm:text-right md:text-right">AGORA</p>
+            <div className="text-4xl font-bold text-gray-600 dark:text-gray-400">{current.temp_c}°C</div>
             <p className="text-sm">Sensação: {current.feelslike_c}°C</p>
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { getWeather, getForecast } from "@/lib/weather-service";
 import { Input } from "@/components/ui/input";
@@ -61,48 +62,77 @@ export default function Home() {
   };
 
   return (
-    <main className="container mx-auto py-6 px-4">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Previsão do Tempo</h1>
-        <ThemeToggle />
-      </div>
-
-      <form
-        onSubmit={handleSearch}
-        className="flex gap-2 w-full md:w-1/2 mx-auto mt-10 mb-4"
-      >
-        <Input
-          placeholder="Digite o nome da cidade..."
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
-
-        <Button type="submit" disabled={loading} className="cursor-pointer">
-          {loading ? "Buscando..." : "Buscar"}
-        </Button>
-      </form>
-
-      {error && (
-        <Card className="my-4 bg-destructive/10 text-destructive">
-          <CardContent>
-            <p className="text-center">{error}</p>
-          </CardContent>
-        </Card>
-      )}
-
-      {weather && (
-        <div>
-          <WeatherCard weather={weather} />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-2">
-            <ChartLine forecast={forecast} />
-            <ChartLine forecast={forecast} />
-            <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1">
-              <ChartLine forecast={forecast} />
-            </div>
-          </div>
-          <ForecastCard forecast={forecast} />
+    <motion.div
+      initial={{ opacity: 0, y: -30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      <main className="container mx-auto py-6 px-4">
+        <div className="flex items-center justify-between">
+          <motion.h1
+            className="text-3xl font-bold"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5, duration: 1.0 }}
+          >
+            Previsão do Tempo
+          </motion.h1>
+          <ThemeToggle />
         </div>
-      )}
-    </main>
+
+        <form
+          onSubmit={handleSearch}
+          className="flex gap-2 w-full md:w-1/2 mx-auto mt-10 mb-4"
+        >
+          <Input
+            placeholder="Digite o nome da cidade..."
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+
+          <Button type="submit" disabled={loading} className="cursor-pointer">
+            {loading ? "Buscando..." : "Buscar"}
+          </Button>
+        </form>
+
+        {error && (
+          <Card className="my-4 bg-destructive/10 text-destructive">
+            <CardContent>
+              <p className="text-center">{error}</p>
+            </CardContent>
+          </Card>
+        )}
+
+        {weather && (
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <WeatherCard weather={weather} />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-2">
+                <ChartLine forecast={forecast} />
+                <ChartLine forecast={forecast} />
+                <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1">
+                  <ChartLine forecast={forecast} />
+                </div>
+              </div>
+            </motion.div>
+
+            <ForecastCard forecast={forecast} />
+          </div>
+        )}
+      </main>
+    </motion.div>
   );
 }

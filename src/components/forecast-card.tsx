@@ -17,14 +17,16 @@ const ForecastCard = ({ forecast }: { forecast: Forecast }) => {
   };
 
   return (
-    <div className="flex justify-between flex-wrap gap-4 mt-2">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-5">
       {Array.isArray(forecast?.forecast?.forecastday) &&
-        forecast.forecast.forecastday.map((item) => (
+        forecast.forecast.forecastday.map((item, index, array) => (
           <Card
             key={item.date}
-            className="w-full rounded-xl transition-all duration-300 shadow-md hover:shadow-xl p-5"
+            className={`rounded-xl transition-all duration-300 shadow-md hover:shadow-xl dark:hover:shadow-slate-800 ${
+              index === array.length - 1 ? "col-span-1 md:col-span-2" : ""
+            }`}
           >
-            <div className="bg-gradient-to-br p-4 md:p-6 transition-all duration-500 w-full">
+            <div className="bg-gradient-to-br p-4 md:p-6 transition-all duration-500">
               <div className="flex flex-col sm:flex-row md:flex-row flex-wrap justify-between items-center mb-4 md:mb-6">
                 <div className="text-center sm:text-left md:text-left">
                   <h2 className="text-2xl sm:text-xl md:text-2xl font-bold text-slate-800 dark:text-slate-100">
